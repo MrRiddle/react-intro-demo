@@ -1,0 +1,34 @@
+.album {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    box-shadow: 0px 0px 10px #000;
+    border-radius: 50%;
+    background: linear-gradient(#101012, #272729, #101012);
+    cursor: pointer;
+    .cover {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        border-radius: 50%;
+        animation: rotate 5s linear infinite;
+        animation-play-state: paused;
+        &.active {
+            animation-play-state: running;
+        }
+    }
+}
+
+@keyframes rotate {
+	0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
