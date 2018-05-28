@@ -1,3 +1,30 @@
 .progress {
-    
+    text-align: center;
+    height: 32px;
+    .time {
+        width: 40px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 32px;
+    }
+    input[type="range"] {
+        width: 200px;
+        height: 2px;
+        margin-top: 16px;
+        background: linear-gradient(to right, #FFD000, #FFD000 0%, rgba(0,0,0,.2) 0%,  rgba(0,0,0,.2));
+        -webkit-appearance: none;
+        &:focus {
+            outline: none;
+        }
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            cursor: pointer;
+            height: 8px;
+            width: 2px;
+            background: #FFFFFF;
+            box-sizing: content-box;
+            border: 3px solid #FFD000;
+        }
+    }
 }

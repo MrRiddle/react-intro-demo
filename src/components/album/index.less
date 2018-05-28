@@ -6,6 +6,40 @@
     border-radius: 50%;
     background: linear-gradient(#101012, #272729, #101012);
     cursor: pointer;
+    animation: rotate 10s linear infinite;
+    animation-play-state: paused;
+    &.active {
+        animation-play-state: running;
+    }
+
+    .ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 4px solid #101012;
+        background: linear-gradient(45deg, #101012, #eaeaf3);
+    }
+
+    .icon {
+        padding: 0;
+        box-sizing: border-box;
+        height: 25%;
+        width: 25%;
+        position: absolute;
+        top: 37.5%;
+        left: 37.5%;
+        border-style: solid;
+        border-width: 40px 0 40px 80px;
+        border-color: transparent transparent transparent rgba(255, 208, 0, .9);
+        transition: all .5s ease-in-out;
+        &.active {
+            border-style: double;
+            border-width: 0 0 0 80px;
+        }
+    }
+
     .cover {
         width: 50%;
         height: 50%;
@@ -13,11 +47,8 @@
         top: 25%;
         left: 25%;
         border-radius: 50%;
-        animation: rotate 5s linear infinite;
-        animation-play-state: paused;
-        &.active {
-            animation-play-state: running;
-        }
+        border: 5px solid #000000;
+        box-sizing: border-box;
     }
 }
 

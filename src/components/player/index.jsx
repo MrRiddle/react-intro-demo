@@ -13,9 +13,11 @@ export default class Player extends React.Component {
             duration: 0,
             currentTime: 0
         }
+        this.sliding = false;
         this.updatePlayerInfo = this.updatePlayerInfo.bind(this);
         this.toggle = this.toggle.bind(this);
         this.jumpTo = this.jumpTo.bind(this);
+        this.slideTo = this.slideTo.bind(this);
         this.setDuration = this.setDuration.bind(this);
     }
 
@@ -34,9 +36,12 @@ export default class Player extends React.Component {
     }
 
     updatePlayerInfo() {
-        this.setState({
-            currentTime: this.audio.currentTime
-        });
+        if(!this.sliding) {
+            this.setState({
+                currentTime: this.audio.currentTime
+            });
+            this.progress.sliding();
+        }
     }
 
     toggle() {
@@ -54,17 +59,33 @@ export default class Player extends React.Component {
 
     jumpTo(e) {
         e.preventDefault();
+        this.sliding = false;
         const value = e.currentTarget.value;
+        this.setState({
+            currentTime: value
+        });
         this.audio.currentTime = value;
+        this.progress.sliding();
+    }
+
+    slideTo(e) {
+        e.preventDefault();
+        this.sliding = true;
+        const value = e.currentTarget.value;
+        this.setState({
+            currentTime: value
+        });
+        this.progress.sliding();
     }
 
     render() {
         return (
             <div className="player">
                 <Album cover={this.props.cover} status={this.state.status} handler={this.toggle} />
-                <Progress duration = {this.state.duration} currentTime={this.state.currentTime} jumpTo={this.jumpTo}/>
+                <p className="info">{this.props.title}-{this.props.artist}</p>
+                <Progress ref={c => {this.progress = c}} duration = {this.state.duration} currentTime={this.state.currentTime} slideTo={this.slideTo} jumpTo={this.jumpTo}/>
                 <audio ref={c => {this.audio = c}} onCanPlay={this.setDuration} loop>
-                    <source src={this.props.music}></source>
+                    <source src={this.props.src}></source>
                 </audio>
             </div>
         );
