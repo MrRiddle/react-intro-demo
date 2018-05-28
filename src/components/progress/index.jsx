@@ -29,7 +29,7 @@ export default class Progress extends React.Component {
                 <span className="time">
                     {this.fommater(currentTime)}
                 </span>
-                <input type="range" ref={c => {this.input = c}} min="0" max={duration} value={currentTime | 0} onMouseUp={this.props.jumpTo} onChange={this.props.slideTo} />
+                <input type="range" ref={c => {this.input = c}} min="0" max={duration} value={currentTime | 0} onTouchEnd={this.props.jumpTo} onMouseUp={this.props.jumpTo} onChange={this.props.slideTo} />
                 <span className="time">
                     {this.fommater(duration)}
                 </span>
