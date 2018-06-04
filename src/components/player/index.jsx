@@ -82,7 +82,7 @@ export default class Player extends React.Component {
         return (
             <div className="player">
                 <Album cover={this.props.cover} status={this.state.status} handler={this.toggle} />
-                <p className="info">{this.props.title}-{this.props.artist}</p>
+                <Info title={this.props.title} artist={this.props.artist} />
                 <Progress ref={c => {this.progress = c}} duration = {this.state.duration} currentTime={this.state.currentTime} slideTo={this.slideTo} jumpTo={this.jumpTo}/>
                 <audio ref={c => {this.audio = c}} onCanPlay={this.setDuration} loop>
                     <source src={this.props.src}></source>
@@ -91,3 +91,5 @@ export default class Player extends React.Component {
         );
     }
 }
+
+const Info = (props) => (<p className="info">{props.title}-{props.artist}</p>)

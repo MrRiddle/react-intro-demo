@@ -10,3 +10,6 @@ npm start
 # build
 npm run build
 ```
+## address
+localhost:8080
+localhost:8080/intro.html
